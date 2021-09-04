@@ -5,10 +5,11 @@ node {
 	stage 'Checkout'
 		checkout scm
 	
-    stage 'Build'        
+    stage 'Build' {       
         def builtImage = docker.build("immersed/immersed.flight.plans:${env.BUILD_ID}")    
+    }
 
-    stage 'Integration Testing' {
+    stage 'IntegrationTesting' {
         app.inside {                        
              sh 'echo "Tests passed"'        
         } 
