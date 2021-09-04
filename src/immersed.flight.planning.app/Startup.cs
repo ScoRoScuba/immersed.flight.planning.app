@@ -60,7 +60,13 @@ namespace immersed.flight.planning.app
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
+            app.UseSwagger(swagger =>
+            {
+                swagger.PreSerializeFilters.Add((swaggerDoc, httpReq) => {
+
+                });
+
+            });
             app.UseSwaggerUI(c => c.SwaggerEndpoint("./v1/swagger.json", "immersed.flight.planning.app v1"));
 
 //            app.UseHttpsRedirection();
