@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Autofac;
 using immersed.flight.planning.app.Extensions.Startup;
+using immersed.flight.planning.app.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,8 @@ namespace immersed.flight.planning.app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks().AddCheck<DefaultHealthCheck>("default_health_check");
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "immersed.flight.planning.app", Version = "v1" });
@@ -56,6 +59,7 @@ namespace immersed.flight.planning.app
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/healthz");
                 endpoints.MapGet("/", context =>
                 {
                     context.Response.Redirect("/swagger/index.html", permanent: false);
