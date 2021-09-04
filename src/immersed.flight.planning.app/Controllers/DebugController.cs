@@ -18,9 +18,17 @@ namespace immersed.flight.planning.app.Controllers
         {
             var sb = new StringBuilder();
 
-            foreach (var a in this.Request.Headers)
+            sb.AppendLine($"Request.PathBase:{Request.PathBase}");
+            sb.AppendLine($"Request.Path:{Request.Path}");
+
+            foreach (var a in Request.Headers)
             {
-                sb.AppendLine($"{a.Key}:{a.Value}");
+                sb.AppendLine($"Request:{a.Key}:{a.Value}");
+            }
+
+            foreach (var a in Response.Headers)
+            {
+                sb.AppendLine($"Response:{a.Key}:{a.Value}");
             }
 
             return new OkObjectResult(sb);
