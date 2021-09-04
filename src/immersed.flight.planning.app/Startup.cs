@@ -61,7 +61,7 @@ namespace immersed.flight.planning.app
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("~/swagger/v1/swagger.json", "immersed.flight.planning.app v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "immersed.flight.planning.app v1"));
 
 //            app.UseHttpsRedirection();
 
@@ -71,10 +71,10 @@ namespace immersed.flight.planning.app
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("~/healthz");
-                endpoints.MapGet("~/", context =>
+                endpoints.MapHealthChecks("/healthz");
+                endpoints.MapGet("/", context =>
                 {
-                    context.Response.Redirect("~/swagger/index.html", permanent: false);
+                    context.Response.Redirect("/swagger/index.html", permanent: false);
                     return Task.CompletedTask;
                 });
 
