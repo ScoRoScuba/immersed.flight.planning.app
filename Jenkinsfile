@@ -5,22 +5,19 @@ node {
 	stage 'Checkout'
 		checkout scm
 	
-    stage 'Build' {       
+    stage 'Build'        
         def builtImage = docker.build("immersed/immersed.flight.plans:${env.BUILD_ID}")
+    
 
-        docker.withRegistry('https://registry.hub.docker.com', 'git'){
-            app.push("${env.BUILD_NUMBER}")            
-            app.push("latest")  
-        }        
-    }
-
-    stage 'Integration Testing' {
+    stage 'Integration Testing' 
+    {
         app.inside {                        
              sh 'echo "Tests passed"'        
         } 
     }
 
-    stage 'Publish' {       
+    stage 'Publish' 
+    {       
         docker.withRegistry('https://registry.hub.docker.com', 'git'){
             app.push("${env.BUILD_NUMBER}")            
             app.push("latest")  
