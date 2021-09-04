@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using Serilog.Core;
 
 namespace immersed.flight.planning.app
 {
@@ -20,6 +19,10 @@ namespace immersed.flight.planning.app
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.AppSettings()
+                .CreateLogger();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
