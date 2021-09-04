@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using Serilog.Core;
 
 namespace immersed.flight.planning.app
 {
@@ -22,6 +24,8 @@ namespace immersed.flight.planning.app
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.Register(c => Log.Logger).AsImplementedInterfaces().SingleInstance();
+
             builder.AddConfiguration(_configuration);
 
             builder.AddServices();
@@ -30,6 +34,11 @@ namespace immersed.flight.planning.app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging((a) =>
+            {
+                a.AddSerilog();
+            });
+
             services.AddHealthChecks().AddCheck<DefaultHealthCheck>("default_health_check");
 
             services.AddSwaggerGen(c =>
