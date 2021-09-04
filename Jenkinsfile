@@ -12,9 +12,6 @@ node {
     }
 
     stage('Integration Testing') {
-        app.inside {                        
-             sh 'echo "Tests passed"'        
-        } 
     }
 
     stage('Publish') {       
