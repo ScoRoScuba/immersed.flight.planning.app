@@ -1,28 +1,30 @@
 node {
-    stage 'Clean workspace'
+    def app
+    stage('Clean workspace')
         cleanWs()
 
-	stage 'Checkout'
+	stage('Checkout'){
 		checkout scm
+    }
 	
-    stage 'Build' {       
-        def builtImage = docker.build("immersed/immersed.flight.plans:${env.BUILD_ID}")    
+    stage('Build') {       
+        app = docker.build("immersed/immersed.flight.plans:${env.BUILD_ID}")    
     }
 
-    stage 'IntegrationTesting' {
+    stage('Integration Testing') {
         app.inside {                        
              sh 'echo "Tests passed"'        
         } 
     }
 
-    stage 'Publish' {       
+    stage('Publish') {       
         docker.withRegistry('https://registry.hub.docker.com', 'git'){
             app.push("${env.BUILD_NUMBER}")            
             app.push("latest")  
         }        
     }    
 
-	stage 'Archive'
-		archive 'ProjectName/bin/Release/**'
-
+	stage('Archive'){
+        archive 'ProjectName/bin/Release/**'
+    }
 }
