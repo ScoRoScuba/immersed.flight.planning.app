@@ -6,8 +6,6 @@ using Serilog;
 namespace immersed.flight.planning.app.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-
     public class FlightPlanController : ControllerBase
     {
         private readonly ILogger _logger;
