@@ -6,7 +6,7 @@ node {
 		checkout scm
 	
     stage 'Build & publish'        
-        def builtImage = docker.build("zooplamatch:${env.BUILD_ID}")
+        def builtImage = docker.build("immersed.flight.plans:${env.BUILD_ID}")
         //builtImage.push()
 
 	stage 'Archive'
