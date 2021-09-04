@@ -15,7 +15,7 @@ node {
     }
 
     stage('Publish') {       
-        docker.withRegistry('https://registry.hub.docker.com', 'git'){
+        docker.withRegistry('https://registry.hub.docker.com', 'immersedDockerRepo'){
             app.push("${env.BUILD_NUMBER}")            
             app.push("latest")  
         }        
