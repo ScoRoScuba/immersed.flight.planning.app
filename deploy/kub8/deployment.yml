@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immersed-flight-planning
+spec:
+  selector:
+    matchLabels:
+      app: immersed-flight-planning
+      version: 2.0.0
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: immersed-flight-planning
+        version: 2.0.0
+    spec:
+      containers:
+      - name: immersed-flight-planning
+        image: "immersed/immersed.flight.plans"
+        env:
+        - name: "PORT"
+          value: "50002"
+        resources:
+          limits:
+            memory: "200Mi"
+            cpu: "1"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 50002
+          initialDelaySeconds: 5
+          periodSeconds: 5

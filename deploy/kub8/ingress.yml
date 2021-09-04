@@ -1,0 +1,17 @@
+apiVersion:  networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: immersed-flight-planning-hello-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: kubernetes.docker.internal
+    http:
+      paths:
+      - path: /flights
+        pathType: Prefix
+        backend:
+          service:
+            name: immersed-flight-planning
+            port: 
+              number: 80
