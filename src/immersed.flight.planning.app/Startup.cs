@@ -71,10 +71,10 @@ namespace immersed.flight.planning.app
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("/healthz");
-                endpoints.MapGet("/", context =>
+                endpoints.MapHealthChecks("~/healthz");
+                endpoints.MapGet("~/", context =>
                 {
-                    context.Response.Redirect("/swagger/index.html", permanent: false);
+                    context.Response.Redirect("~/swagger/index.html", permanent: false);
                     return Task.CompletedTask;
                 });
 

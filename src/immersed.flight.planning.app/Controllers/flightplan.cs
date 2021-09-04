@@ -16,7 +16,7 @@ namespace immersed.flight.planning.app.Controllers
         }
 
         [HttpGet]
-        [Route("/flightplan")]
+        [Route("~/flightplan")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -28,7 +28,7 @@ namespace immersed.flight.planning.app.Controllers
         }
 
         [HttpGet]
-        [Route("/flightplan/{flightPlanId}")]
+        [Route("~/flightplan/{flightPlanId}")]
         public IActionResult GetFlightPlan(Guid flightPlanId)
         {
             _logger.Information($"{nameof(FlightPlanController)}:{nameof(GetFlightPlans)}:{flightPlanId}");
