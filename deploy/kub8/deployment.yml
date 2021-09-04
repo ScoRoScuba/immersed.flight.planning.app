@@ -7,7 +7,7 @@ spec:
     matchLabels:
       app: immersed-flight-planning
       version: 2.0.0
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -17,6 +17,7 @@ spec:
       containers:
       - name: immersed-flight-planning
         image: "immersed/immersed.flight.plans"
+        imagePullPolicy: Always
         env:
         - name: "PORT"
           value: "50002"

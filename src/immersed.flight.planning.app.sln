@@ -7,6 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "immersed.flight.planning.ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "immersed.flight.planning.tests", "immersed.flight.planning.tests\immersed.flight.planning.tests.csproj", "{53CBAE14-6640-4F27-AD97-3A556CE9F592}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{EB610E93-15B0-46D4-88FE-E0DFE72277DB}"
+	ProjectSection(SolutionItems) = preProject
+		..\.dockerignore = ..\.dockerignore
+		..\.gitignore = ..\.gitignore
+		..\dockerfile = ..\dockerfile
+		..\Jenkinsfile = ..\Jenkinsfile
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
