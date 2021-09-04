@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Serilog;
+//using Serilog;
 
 namespace immersed.flight.planning.app
 {
@@ -16,9 +16,9 @@ namespace immersed.flight.planning.app
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+/*                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                     .ReadFrom.Configuration(hostingContext.Configuration)
-                    .Enrich.FromLogContext())
+                    .Enrich.FromLogContext()) */
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureAppConfiguration((context, builder) =>
                 {
