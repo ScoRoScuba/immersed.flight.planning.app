@@ -61,7 +61,7 @@ namespace immersed.flight.planning.app
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("./swagger/v1/swagger.json", "immersed.flight.planning.app v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("./v1/swagger.json", "immersed.flight.planning.app v1"));
 
 //            app.UseHttpsRedirection();
 
